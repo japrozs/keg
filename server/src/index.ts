@@ -23,6 +23,7 @@ const main = async () => {
         entities: [User],
     });
     await conn.runMigrations();
+
     const app = express();
 
     const RedisStore = connectRedis(session);

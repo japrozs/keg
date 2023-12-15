@@ -16,6 +16,7 @@ import { validateRegister } from "../utils/validate-register";
 import { sendEmail } from "../utils/send-email";
 import { v4 } from "uuid";
 import { getConnection } from "typeorm";
+import { emitWarning } from "process";
 
 @ObjectType()
 export class FieldError {
@@ -155,6 +156,7 @@ export class UserResolver {
                 .values({
                     name: options.name,
                     email: options.email,
+                    username: options.username,
                     password: hashedPassword,
                 })
                 .returning("*")
@@ -184,19 +186,20 @@ export class UserResolver {
 
     @Mutation(() => UserResponse)
     async login(
-        @Arg("email") email: string,
+        @Arg("usernameOrEmail") usernameOrEmail: string,
         @Arg("password") password: string,
         @Ctx() { req }: Context
     ): Promise<UserResponse> {
-        const user = await User.findOne({
-            where: { email },
-            relations: [],
-        });
+        const user = await User.findOne(
+            usernameOrEmail.includes("@")
+                ? { where: { email: usernameOrEmail } }
+                : { where: { username: usernameOrEmail } }
+        );
         if (!user) {
             return {
                 errors: [
                     {
-                        field: "email",
+                        field: "usernameOrEmail",
                         message: "that account doesn't exist",
                     },
                 ],
