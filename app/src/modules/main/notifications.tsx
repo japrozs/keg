@@ -3,8 +3,7 @@ import { MainStackNav } from "./main-nav";
 import { useMeQuery } from "../../generated/graphql";
 import { colors } from "../../ui/theme";
 
-export const Main: React.FC<MainStackNav<"Home">> = () => {
-    const { data, loading } = useMeQuery();
+export const Notifications: React.FC<MainStackNav<"Notifications">> = () => {
     return (
         <ScrollView
             style={{
@@ -18,7 +17,7 @@ export const Main: React.FC<MainStackNav<"Home">> = () => {
                     color: colors.primary_blue,
                 }}
             >
-                {JSON.stringify(data?.me, null, 4)}
+                welcome to the fucking notifications page
             </Text>
         </ScrollView>
     );

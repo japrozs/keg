@@ -3,6 +3,8 @@ import { RouteProp } from "@react-navigation/native";
 
 export type MainStackParamList = {
     Home: undefined;
+    Profile: undefined;
+    Notifications: undefined;
 };
 
 export type MainStackNav<RouteName extends keyof MainStackParamList> = {

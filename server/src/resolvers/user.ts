@@ -16,7 +16,6 @@ import { validateRegister } from "../utils/validate-register";
 import { sendEmail } from "../utils/send-email";
 import { v4 } from "uuid";
 import { getConnection } from "typeorm";
-import { emitWarning } from "process";
 
 @ObjectType()
 export class FieldError {
