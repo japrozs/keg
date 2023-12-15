@@ -6,9 +6,11 @@
         "start": "expo start",
         "android": "expo start --android",
         "ios": "expo start --ios",
-        "web": "expo start --web"
+        "web": "expo start --web",
+        "gen": "graphql-codegen --config codegen.yml"
     },
     "dependencies": {
+        "@apollo/client": "^3.8.8",
         "@react-navigation/bottom-tabs": "^6.5.11",
         "@react-navigation/drawer": "^6.6.6",
         "@react-navigation/native": "^6.1.9",
@@ -21,6 +23,9 @@
     },
     "devDependencies": {
         "@babel/core": "^7.20.0",
+        "@graphql-codegen/cli": "^5.0.0",
+        "@graphql-codegen/typescript-operations": "^4.0.1",
+        "@graphql-codegen/typescript-react-apollo": "^4.1.0",
         "@types/react": "~18.2.14",
         "typescript": "^5.1.3"
     },
