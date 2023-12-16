@@ -7,6 +7,8 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { Profile } from "./main/profile";
 import { useMeQuery } from "../generated/graphql";
 import { Notifications } from "./main/notifications";
+import { Questions } from "./main/questions";
+import { Search } from "./main/search";
 
 interface MainStackProps {}
 
@@ -71,6 +73,65 @@ export const MainStack: React.FC<MainStackProps> = ({}) => {
             />
             <Tab.Screen
                 options={{
+                    headerTitle: "",
+                    header: () => <></>,
+                    title: "",
+                    tabBarIcon: ({ focused }) => (
+                        <View
+                            style={{
+                                paddingTop: 10,
+                            }}
+                        >
+                            <Octicons
+                                name="search"
+                                size={25}
+                                color={focused ? "#fff" : "#838383"}
+                            />
+                        </View>
+                    ),
+                }}
+                name="Search"
+                component={Search}
+            />
+            <Tab.Screen
+                options={{
+                    headerTitle: "",
+                    title: "",
+                    headerLeftContainerStyle: {
+                        marginTop: 5,
+                        paddingBottom: 10,
+                        paddingLeft: 20,
+                    },
+                    headerLeft: () => (
+                        <>
+                            <Image
+                                style={{
+                                    height: 33.5,
+                                    width: 55.25,
+                                }}
+                                source={require("../../assets/icons/keg.png")}
+                            />
+                        </>
+                    ),
+                    tabBarIcon: ({ focused }) => (
+                        <View
+                            style={{
+                                paddingTop: 10,
+                            }}
+                        >
+                            <Octicons
+                                name="flame"
+                                size={25}
+                                color={focused ? "#fff" : "#838383"}
+                            />
+                        </View>
+                    ),
+                }}
+                name="Questions"
+                component={Questions}
+            />
+            <Tab.Screen
+                options={{
                     headerTitle: "Notifications",
                     headerTintColor: "#fff",
                     title: "",
@@ -81,7 +142,7 @@ export const MainStack: React.FC<MainStackProps> = ({}) => {
                             }}
                         >
                             <Octicons
-                                name="flame"
+                                name="bell"
                                 size={25}
                                 color={focused ? "#fff" : "#838383"}
                             />
